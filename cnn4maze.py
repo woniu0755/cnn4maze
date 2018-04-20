@@ -21,11 +21,9 @@ cnn.load_state_dict(torch.load('cnn.pkl'))
 
 while True:
 	tmp=cnn(test)
-	tmp=tmp.eq(3)
-	tmp=tmp.float()
+	tmp.eq_(3)
 	tmp=tmp.sum(dim=1,keepdim=True)
-	tmp=tmp>0.5
-	tmp=tmp.float()
+	tmp.gt_(0.5)
 	if tmp.equal(test):
 		break
 	test=tmp
